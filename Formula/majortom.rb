@@ -26,19 +26,11 @@ class Majortom < Formula
 
   def install
     bin.install "tom"
-    libexec.install "daemon"
-  end
-
-  def post_install
-    daemon_dir = Pathname.new("#{Dir.home}/.majortom/bin")
-    daemon_dir.mkpath
-    ln_sf libexec/"daemon", daemon_dir/"daemon"
+    bin.install "daemon"
   end
 
   def caveats
     <<~EOS
-      The daemon has been linked to ~/.majortom/bin/daemon.
-
       Get started:
         tom daemon start -d
         tom daemon status
